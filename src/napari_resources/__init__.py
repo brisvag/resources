@@ -42,11 +42,11 @@ def logo_path(variant: str = "gradient", template: str = "plain", mode: Literal[
         (or the working tree is a fresh checkout).
     """
     if variant not in logo_variants():
-        raise ValueError(f"variant not found: {variant}")
+        raise ValueError(f"variant must be one of {set(logo_variants())}; got '{variant}'")
     if template not in logo_templates():
-        raise ValueError(f"template not found: {template}")
+        raise ValueError(f"template must be one of {set(logo_templates())}; got '{template}'")
     if mode not in ("dark", "light"):
-        raise ValueError(f"mode not valid: {mode}")
+        raise ValueError(f"mode must be either 'light' or 'dark'; got '{mode}'")
 
     name = f"{variant}-{template}-{mode}"
     resource = logos_dir / "generated" / f"{name}.svg"
