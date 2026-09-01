@@ -17,12 +17,13 @@ def test_logo_resource_reachable_via_importlib():
 
 
 def test_logo_path_helper():
-    assert logo_path("gradient-plain-dark.svg").is_file()
+    assert logo_path().is_file()
+    assert logo_path("flat", "text", "light").is_file()
 
 
 def test_logo_path_missing_raises():
-    with pytest.raises(FileNotFoundError):
-        logo_path("not-a-real-logo.svg")
+    with pytest.raises(ValueError):
+        logo_path("not", "real", "dark")
 
 
 def test_logo_variants_and_templates():
